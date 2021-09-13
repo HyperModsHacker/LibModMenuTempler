@@ -28,7 +28,7 @@ struct My_Patches {
     // etc...
 } hexPatches;
 
-bool feature1, feature2, featureHookToggle, Health;
+bool feature1, feature2, featureHookToggle, Health, Dead;
 int sliderValue = 1, level = 0;
 void *instanceBtn;
 
@@ -65,6 +65,9 @@ void FunctionExample(void *instance) {
     if (instance != NULL) {
         if (Health) {
             *(int *) ((uint64_t) instance + 0x48) = 999;
+        }
+        if (Dead) {
+            *(bool *) ((uint64_t) instance + 0x23) = true;
         }
     }
     return old_FunctionExample(instance);
